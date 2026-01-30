@@ -16,6 +16,10 @@ func (h *Handler) Create(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func (h *Handler) Update(w http.ResponseWriter, r *http.Request) {
+
+}
+
 func (h *Handler) GetList(w http.ResponseWriter, r *http.Request) {
 
 }
