@@ -11,15 +11,11 @@ type Currency struct {
 	Sign     string
 }
 
-func (Currency) TableName() string {
-	return "currencies"
-}
-
 func NewCurrency(db *sql.DB) error {
 	sqlStmt := `
     CREATE TABLE IF NOT EXISTS currencies (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        code VARCHAR(8),
+        code VARCHAR(8) UNIQUE,
         fullname VARCHAR(256),
         sign VARCHAR(4)
     );
