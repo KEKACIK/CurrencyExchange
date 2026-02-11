@@ -1,9 +1,12 @@
 package currency
 
-import "net/http"
+import (
+	"database/sql"
+	"net/http"
+)
 
-func RouterInit() {
-	handler := NewHandler()
+func RouterInit(db *sql.DB) {
+	handler := NewHandler(db)
 
 	http.HandleFunc("POST /currencies", handler.Create)
 	http.HandleFunc("GET /currency/{code}", handler.Get)
