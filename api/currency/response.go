@@ -1,8 +1,8 @@
 package currency
 
 type Response struct {
-	id   int
-	name string
-	code string
-	sign string
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+	Code string `json:"code"`
+	Sign string `json:"sign"`
 }

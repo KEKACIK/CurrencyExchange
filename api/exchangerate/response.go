@@ -3,8 +3,8 @@ package exchangerate
 import "CurrencyExchange/api/currency"
 
 type Response struct {
-	id             int
-	baseCurrency   currency.Response
-	targetCurrency currency.Response
-	rate           float32
+	Id             int               `json:"id"`
+	BaseCurrency   currency.Response `json:"baseCurrency"`
+	TargetCurrency currency.Response `json:"targetCurrency"`
+	Rate           float64           `json:"rate"`
 }
