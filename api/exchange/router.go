@@ -1,9 +1,12 @@
-package exchangerate
+package exchange
 
-import "net/http"
+import (
+	"database/sql"
+	"net/http"
+)
 
-func RouterInit() {
-	handler := NewHandler()
+func RouterInit(db *sql.DB) {
+	handler := NewHandler(db)
 
 	http.HandleFunc("GET /exchange", handler.Get)
 }

@@ -1,15 +1,19 @@
 package exchangerate
 
 import (
+	"database/sql"
 	"fmt"
 	"net/http"
 )
 
 type Handler struct {
+	db *sql.DB
 }
 
-func NewHandler() *Handler {
-	return &Handler{}
+func NewHandler(db *sql.DB) *Handler {
+	return &Handler{
+		db: db,
+	}
 }
 
 func (h *Handler) Create(w http.ResponseWriter, r *http.Request) {
