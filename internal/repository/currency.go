@@ -7,6 +7,7 @@ import (
 
 type Currency interface {
 	Create(code, fullName, sign string) (*model.Currency, error)
+	GetAll() (*[]model.Currency, error)
 	GetById(id int) (*model.Currency, error)
 	GetByCode(code string) (*model.Currency, error)
 	Update(code, fullName, sign string) (*model.Currency, error)
@@ -26,6 +27,22 @@ func (c *currency) Create(code, fullName, sign string) (*model.Currency, error) 
 		return nil, err
 	}
 	return c.GetByCode(code)
+}
+
+func (c *currency) GetAll() (*[]model.Currency, error) {
+	rows, err := c.db.Query("SELECT * FROM currencies")
+	if err != nil {
+		return nil, err
+	}
+
+	currencies := []model.Currency{}
+	for rows.Next() {
+		currency := model.Currency{}
+		err = rows.Scan(&currency.Id, &currency.Code, &currency.FullName, &currency.Sign)
+		currencies = append(currencies, currency)
+	}
+
+	return &currencies, nil
 }
 
 func (c *currency) GetById(id int) (*model.Currency, error) {
